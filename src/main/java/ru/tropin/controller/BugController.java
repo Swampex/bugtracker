@@ -7,7 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.tropin.model.Bug;
-import ru.tropin.dto.BugCreationDto;
+import ru.tropin.transfer.BugCreationDto;
 import ru.tropin.repository.BugRepository;
 import ru.tropin.repository.ProjectRepository;
 import ru.tropin.util.DTO;

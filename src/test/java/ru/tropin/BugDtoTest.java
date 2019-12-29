@@ -2,7 +2,7 @@ package ru.tropin;
 
 import org.junit.Test;
 import org.modelmapper.ModelMapper;
-import ru.tropin.dto.BugCreationDto;
+import ru.tropin.transfer.BugCreationDto;
 import ru.tropin.model.Bug;
 import static org.junit.Assert.assertEquals;
 

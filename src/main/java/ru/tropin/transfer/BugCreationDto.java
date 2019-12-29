@@ -1,4 +1,4 @@
-package ru.tropin.dto;
+package ru.tropin.transfer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
