@@ -5,8 +5,13 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import ru.tropin.model.Bug;
+import ru.tropin.model.Project;
+
+import java.util.List;
 
 public interface BugRepository extends JpaRepository<Bug, Long> {
+
+    List<Bug> fetchById(@Param("id") Project project);
 
 //    @Modifying
 //    @Query("update bug b set b.title = :title, b.description = : description " +

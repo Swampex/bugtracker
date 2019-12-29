@@ -8,15 +8,12 @@
 
 <body bgcolor="#ffefd5" background="\triangular.png">
 
+<h2>Bugtracker</h2>
 <#include 'fragments/menu.ftl'> <br>
 
-<h2>Bugtracker</h2>
-
-<h3>Edit bug</h3>
+<h4>${bug.getId()} - ${bug.getTitle()}</h4>
 <form action="/bugs/update?id=${bug.getId()}" method="post">
-    <label for="id">ID
-        <input id="id" type="text" name="bug_id" readonly autocomplete="off" value="${bug.getId()}">
-    </label>
+    <input type="hidden" id="bug_id" type="text" name="bug_id" value="${bug.getId()}">
     <label for="title">Title
         <input id="title" type="text" name="title" value="${bug.getTitle()}">
     </label>
@@ -29,16 +26,16 @@
             <#else> <option selected> </option>
             </#if>
             <#list projects as project>
-                <option>${project.getId()} - ${project.getName()}</option>
+                <option value="${project.getId()}">${project.getId()} - ${project.getName()}</option>
             </#list>
         </select>
-    </label>
-    <input type="submit" value="Update">
+    </label> <br>
+    <input type="submit" value="Update">-->
 </form>
-
+<br>
 <form action="/bugs/delete" method="get">
     <input type="hidden" name="id" value="${bug.getId()}">
-    <input type="submit" value="delete">
+    <button value="Delete" type="submit"><img src="https://image.flaticon.com/icons/png/512/2290/premium/2290700.png" height="40"></button>
 </form>
 
 <br>

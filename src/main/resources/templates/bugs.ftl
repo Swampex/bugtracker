@@ -8,12 +8,12 @@
 
 <body bgcolor="#ffefd5" background="\triangular.png">
 
-<#include 'fragments/menu.ftl'> <br>
 <div align="left">
-<h2>Bugtracker</h2>
+    <h2>Bugtracker</h2>
+    <#include 'fragments/menu.ftl'> <br>
 
-<b>Total number of bugs: </b> ${bugs?size}
-<br>
+    <b>Total number of bugs: </b> ${bugs?size}
+    <br>
 
 <h4>Create new bug</h4>
 <form action="/bugs" method="post">
@@ -54,11 +54,12 @@
                             <a class="divTableCell" href="/bugs/info?id=${bug.getId()}">${bug.getId()}</a>
                             <div class="divTableCell">${bug.getTitle()}</div>
                             <div class="divTableCell">${bug.getDescription()}</div>
-                            <div class="divTableCell">
-                            <#if (bug.getProject())??> ${bug.getProject().getId()} - ${bug.getProject().getName()}
-                            <#else>                No project defined
+                            <#if (bug.getProject())??>
+                            <a class="divTableCell" href="/projects/info?id=${bug.getProject().getId()}">
+                            ${bug.getProject().getId()} - ${bug.getProject().getName()}
+                            <#else><div class="divTableCell">No project defined</div>
                             </#if>
-                            </div>
+                            </a>
                     </div>
                 </#list>
             </#if>
