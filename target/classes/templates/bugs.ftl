@@ -17,18 +17,21 @@
 
 <h4>Create new bug</h4>
 <form action="/bugs" method="post">
-    <label for="title">Title:
-    <input id="title" type="text" name="title" value="titleBub_val">
+    <label>
+        Title
+        <input type="text" name="title" value="titleBub_val">
     </label>
-    <label for="description">Description:
-    <input id="description" type="text" name="description" value="desc_val">
+    <label>
+        Description
+        <textarea name="description">description of your bug</textarea>
     </label>
-    <label for="project">Project
-        <select id="project" name="project_id_name">
+    <label>
+        Project
+        <select name="project_id">
             <option selected> </option>
                 <#if projects?size !=0>
                     <#list projects as project>
-                        <option>${project.getId()} - ${project.getName()}</option>
+                        <option value="${project.getId()}">${project.getId()} - ${project.getName()}</option>
                     </#list>
                 </#if>
             </select>

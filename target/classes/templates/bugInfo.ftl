@@ -13,16 +13,18 @@
 
 <h4>${bug.getId()} - ${bug.getTitle()}</h4>
 <form action="/bugs/update?id=${bug.getId()}" method="post">
-    <input type="hidden" id="bug_id" type="text" name="bug_id" value="${bug.getId()}">
-    <label for="title">Title
-        <input id="title" type="text" name="title" value="${bug.getTitle()}">
+    <input type="hidden" id="bug_id" name="bug_id" value="${bug.getId()}">
+    <label>
+        Title
+        <input type="text" name="title" value="${bug.getTitle()}">
     </label>
-    <label for="description">Description
-        <input id="description" type="text" name="description" autocomplete="off" value="${bug.getDescription()}">
+    <label>
+        Description
+        <textarea name="description">${bug.getDescription()}</textarea>
     </label>
     <label for="project_id_name">Project
         <select id="project_id_name" name="project_id_name">
-            <#if bug.getProject()??><option selected> ${bug.getProject().getId()} - ${bug.getProject().getName()} </option>
+            <#if bug.getProject()??><option selected value="${bug.getProject().getId()}"> ${bug.getProject().getId()} - ${bug.getProject().getName()} </option>
             <#else> <option selected> </option>
             </#if>
             <#list projects as project>
@@ -30,7 +32,7 @@
             </#list>
         </select>
     </label> <br>
-    <input type="submit" value="Update">-->
+    <input class="button" type="submit" value="Update">
 </form>
 <br>
 <form action="/bugs/delete" method="get">

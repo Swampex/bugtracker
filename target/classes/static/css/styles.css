@@ -1,29 +1,24 @@
-/*h1 {*/
-/*    color: #a52a2a; !* Цвет заголовка *!*/
-/*    font-size: 24pt; !* Размер шрифта в пунктах *!*/
-/*    font-family: Georgia, Times, serif; !* Семейство шрифтов *!*/
-/*    font-weight: normal; !* Нормальное начертание текста  *!*/
-/*}*/
-
-/*body {*/
-/*    font-family: Arial, Verdana,  sans-serif; !* Семейство шрифтов *!*/
-/*    font-size: 11pt; !* Размер основного шрифта в пунктах  *!*/
-/*    background-color: #f0f0f0; !* Цвет фона веб-страницы *!*/
-/*    color: #333; !* Цвет основного текста *!*/
-/*}*/
-
 input {
     display: inline-block;
     width: 6em;
     position: relative;
     top: auto;
+    min-width: 30em;
+}
+input.button{
+
 }
 
 label {
-    display: inline-block;
+    display: block;
     width: 6em;
     margin-right: .5em;
     padding-top: 1.5em;
+}
+
+textarea{
+    min-height: 4em;
+    min-width: 30em
 }
 
 div.blueTable {
