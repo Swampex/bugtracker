@@ -3,11 +3,13 @@ package ru.tropin.security.details;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.tropin.model.Role;
 import ru.tropin.model.State;
 import ru.tropin.model.User;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class UserDetailsImpl implements UserDetails {
 
@@ -23,9 +25,16 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        String userRole = user.getRole().name();
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole);
-        return Collections.singletonList(authority);
+        Set<Role> authorities = user.getRoles();
+        String userRole;
+        SimpleGrantedAuthority authority;
+        Set<SimpleGrantedAuthority> resultAuthorities = new HashSet<>();
+        for(Role role:authorities) {
+            userRole = role.name();
+            authority = new SimpleGrantedAuthority(userRole);
+            resultAuthorities.add(authority);
+        }
+        return resultAuthorities;
     }
 
     @Override

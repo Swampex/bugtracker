@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import ru.tropin.form.UserForm;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -27,8 +27,10 @@ public class User {
     private String login;
     private String hashPassword;
 
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "Role", joinColumns = @JoinColumn(name = "role"))
     @Enumerated(value = EnumType.STRING)
-    private Role role;
+    private Set<Role> roles;
 
     @Enumerated(value = EnumType.STRING)
     private State state;
