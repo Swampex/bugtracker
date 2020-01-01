@@ -21,7 +21,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @Embedded
+    private ContactUser contactUser;
 
     private String login;
     private String hashPassword;
@@ -33,9 +34,10 @@ public class User {
     private State state;
 
     public static User from(UserForm form) {
-        User newUser = User.builder().
-                name(form.getName())
+        ContactUser contacts = ContactUser.builder()
+                .firstName(form.getName()).build();
+        return User.builder()
+                .contactUser(contacts)
                 .build();
-        return newUser;
     }
 }

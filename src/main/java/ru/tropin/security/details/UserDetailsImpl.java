@@ -26,7 +26,6 @@ public class UserDetailsImpl implements UserDetails {
         String userRole = user.getRole().name();
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole);
         return Collections.singletonList(authority);
-
     }
 
     @Override

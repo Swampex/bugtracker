@@ -14,7 +14,7 @@ public class UserDto {
 
     public static UserDto from(User user) {
         return UserDto.builder()
-                .name(user.getName())
+                .name(user.getContactUser().getFirstName())
                 .login(user.getLogin())
                 .build();
     }
