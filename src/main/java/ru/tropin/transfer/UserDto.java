@@ -19,6 +19,7 @@ public class UserDto {
     private State state;
     private String login;
     private Set<Role> roles;
+    private Long id;
 
     public static UserDto from(User user) {
         return UserDto.builder()
@@ -28,6 +29,7 @@ public class UserDto {
                 .login(user.getLogin())
                 .state(user.getState())
                 .roles(user.getRoles())
+                .id(user.getId())
                 .build();
     }
 }

@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<form action="/profileSettings?id=${user.getLogin()}" method="post">
+<form action="/profileSettings?id=${user.getId()}" method="post">
     <fieldset>
         <label>
             Login
@@ -34,7 +34,7 @@
         </div>
 
     </fieldset>
-    <input type="submit" value="Report">
+    <input type="submit" value="Edit profile">
 </form>
 
 </body>

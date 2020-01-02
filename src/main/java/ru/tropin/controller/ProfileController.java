@@ -5,11 +5,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.tropin.form.ProfileForm;
 import ru.tropin.model.Role;
 import ru.tropin.model.User;
 import ru.tropin.repository.UsersRepository;
 import ru.tropin.security.details.UserDetailsImpl;
+import ru.tropin.services.ProfileService;
 import ru.tropin.transfer.UserDto;
 
 import java.util.*;
@@ -23,6 +26,9 @@ public class ProfileController {
 
     @Autowired
     private UsersRepository usersRepository;
+
+    @Autowired
+    private ProfileService profileService;
 
     @GetMapping("/")
     public String getProfilePage(Authentication authentication, ModelMap modelMap) {
@@ -42,7 +48,7 @@ public class ProfileController {
         modelMap.addAttribute("user", userDto);
 
         Set<Role> userRoles = user.getRoles();
-        Map<Role, Boolean> rolesStates = Arrays.asList(Role.values()).stream()
+        Map<Role, Boolean> rolesStates = Arrays.stream(Role.values())
                 .collect(Collectors.toMap(
                         Function.identity(),
 //                        role -> userRoles.contains(role)
@@ -50,5 +56,12 @@ public class ProfileController {
                 ));
         modelMap.addAttribute("userRolesStates", rolesStates);
         return "profiles/profileSettings";
+    }
+
+    @PostMapping(value = "/profileSettings", params = "id")
+    public String updateProfile(ModelMap modelMap, @RequestParam Long id, ProfileForm profileForm) {
+        User user = usersRepository.findOne(id);
+        profileService.updateProfile(profileForm, id);
+        return "redirect:/profileSettings?id="+id;
     }
 }
