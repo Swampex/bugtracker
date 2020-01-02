@@ -31,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/bugs**").hasAnyAuthority("TESTER")
+                .antMatchers("/profileSettings**").hasAnyAuthority("ADMIN")
                 .antMatchers("/login**").permitAll()
                 .antMatchers("/signUp**").permitAll()
                 .antMatchers("/profile**").permitAll()

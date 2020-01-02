@@ -1,16 +1,28 @@
 package ru.tropin.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import ru.tropin.model.Role;
+import ru.tropin.model.User;
+import ru.tropin.repository.UsersRepository;
 import ru.tropin.security.details.UserDetailsImpl;
 import ru.tropin.transfer.UserDto;
+
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static ru.tropin.transfer.UserDto.from;
 
 @Controller
 public class ProfileController {
+
+    @Autowired
+    private UsersRepository usersRepository;
 
     @GetMapping("/")
     public String getProfilePage(Authentication authentication, ModelMap modelMap) {
@@ -20,6 +32,23 @@ public class ProfileController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         UserDto userDto = from(userDetails.getUser());
         modelMap.addAttribute("user", userDto);
-        return "profile";
+        return "profiles/profile";
+    }
+
+    @GetMapping(value = "/profileSettings", params = "id")
+    public String getProfileSettingsPage(Authentication authentication, ModelMap modelMap, @RequestParam Long id) {
+        User user = usersRepository.findOne(id);
+        UserDto userDto = from(user);
+        modelMap.addAttribute("user", userDto);
+
+        Set<Role> userRoles = user.getRoles();
+        Map<Role, Boolean> rolesStates = Arrays.asList(Role.values()).stream()
+                .collect(Collectors.toMap(
+                        Function.identity(),
+//                        role -> userRoles.contains(role)
+                        userRoles::contains
+                ));
+        modelMap.addAttribute("userRolesStates", rolesStates);
+        return "profiles/profileSettings";
     }
 }

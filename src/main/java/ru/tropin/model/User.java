@@ -28,7 +28,7 @@ public class User {
     private String hashPassword;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "Role", joinColumns = @JoinColumn(name = "role"))
+    @CollectionTable(name = "user_id_roles")
     @Enumerated(value = EnumType.STRING)
     private Set<Role> roles;
 

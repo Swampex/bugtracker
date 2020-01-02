@@ -1,14 +1,3 @@
-input {
-    display: inline-block;
-    width: 6em;
-    position: relative;
-    top: auto;
-    min-width: 30em;
-}
-input.button{
-
-}
-
 label {
     display: block;
     width: 6em;
@@ -16,9 +5,11 @@ label {
     padding-top: 1.5em;
 }
 
-textarea{
-    min-height: 4em;
-    min-width: 30em
+input {
+    display: inline;
+    width: 6em;
+    position: relative;
+    top: auto;
 }
 
 div.blueTable {
@@ -93,3 +84,19 @@ div.blueTable {
 .divTableHeading { display: table-header-group;}
 .divTableFoot { display: table-footer-group;}
 .divTableBody { display: table-row-group;}
+
+div.userSettings {
+    display: table;
+    border-collapse: collapse;
+}
+div.checkBox_row {
+    display: table-row;
+    height: 50px;
+    vertical-align: middle;
+}
+
+div.userSettings div div {
+    border: 1px solid darkorange;
+    display: table-cell;
+    text-align: left;
+}
