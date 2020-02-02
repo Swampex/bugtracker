@@ -29,6 +29,7 @@ public class Bug {
     private Project project;
 
     @NotNull
+    @Column(length=1000)
     private String description;
 
     public Bug(Map<String, String> rqBody, ProjectRepository projectRepository) {
@@ -39,13 +40,4 @@ public class Bug {
             this.project = projectRepository.findOne(Long.valueOf(rqBody.get("project_id")));
         }
     }
-
-//    public static Bug from(Map<String, String> rqBody, ProjectRepository projectRepository) {
-//
-//        Bug bug = Bug.builder()
-//                .title(rqBody.get("title"))
-//                .description(rqBody.get("description"))
-//                .
-//    }
-
 }

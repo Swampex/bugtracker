@@ -41,6 +41,12 @@ public class ProfileController {
         return "profiles/profile";
     }
 
+    @GetMapping("/profiles")
+    public String getProfiles(ModelMap modelMap) {
+        modelMap.addAttribute("users", usersRepository.findAll());
+        return "profiles/profilesList";
+    }
+
     @GetMapping(value = "/profileSettings", params = "id")
     public String getProfileSettingsPage(Authentication authentication, ModelMap modelMap, @RequestParam Long id) {
         User user = usersRepository.findOne(id);

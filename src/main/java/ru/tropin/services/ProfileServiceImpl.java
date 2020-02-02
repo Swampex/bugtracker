@@ -5,13 +5,11 @@ import org.springframework.stereotype.Service;
 import ru.tropin.form.ProfileForm;
 import ru.tropin.model.ContactUser;
 import ru.tropin.model.Role;
-import ru.tropin.model.State;
 import ru.tropin.model.User;
 import ru.tropin.repository.UsersRepository;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Stream;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {

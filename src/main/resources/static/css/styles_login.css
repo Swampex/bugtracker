@@ -1,0 +1,12 @@
+label.login {
+    width: 12em
+}
+
+input.login {
+    position: relative;
+    float: right;
+}
+
+div.checkbox {
+    width: 13em;
+}
