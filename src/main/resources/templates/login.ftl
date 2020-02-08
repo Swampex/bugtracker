@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Bugtracker: Login</title>
+    <title>Bugtracker: Sign in</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="/css/styles_login.css" rel="stylesheet">
+    <link rel="stylesheet" href="\css\styles_checkbox.css">
 </head>
 <body>
 <div class="container-fluid">
-
+    <#include 'fragments/navbar_preLogin.ftl'>
     <div class="row">
         <div class="col-md-2" style="background-color: #AAAAAA">
 
@@ -21,7 +21,7 @@
                 <div class="alert alert-danger" role="alert">Логин или пароль введены неверно</div>
             </#if>
             <div class="form-style-2">
-                <div class="form-style-2-heading">
+                <div class="h4 mb4">
                     Sign in
                 </div>
                 <form method="post" action="/login">
@@ -37,9 +37,9 @@
                             <input class="form-control" type="password" id="password" name="password">
                         </div>
                     </div>
-                    <div class="checkbox">
-                        <label for="remember-me" class="form-check-label login">Remember me</label>
-                        <input type="checkbox" id="remember-me" name="remember-me" class="form-check-input login">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked" name="remember-me">
+                        <label class="custom-control-label" for="defaultUnchecked">Remember me</label>
                     </div>
                     <input type="submit" class="btn btn-primary" value="Log in">
                 </form>

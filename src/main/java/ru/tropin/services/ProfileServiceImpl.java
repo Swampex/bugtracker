@@ -21,11 +21,7 @@ public class ProfileServiceImpl implements ProfileService {
     public void updateProfile(ProfileForm profileForm, Long id) {
         User user = usersRepository.findOne(id);
 
-        ContactUser contacts = ContactUser.builder()
-                .firstName(profileForm.getFirstName())
-                .lastName(profileForm.getLastName())
-                .phoneNumber(profileForm.getPhoneNumber())
-                .build();
+        ContactUser contacts = new ContactUser(profileForm);
 
         Set<Role> roles = new HashSet<>();
         if(profileForm.getRole_ADMIN()!=null) {
@@ -40,8 +36,18 @@ public class ProfileServiceImpl implements ProfileService {
 
         user.setContactUser(contacts);
         user.setLogin(profileForm.getLogin());
-//        user.setState(profileForm.getState());
         user.setRoles(roles);
+        usersRepository.save(user);
+    }
+
+    @Override
+    public void updateProfileSimple(ProfileForm profileForm, Long id) {
+        User user = usersRepository.findOne(id);
+
+        ContactUser contacts = new ContactUser(profileForm);
+        user.setContactUser(contacts);
+        user.setLogin(profileForm.getLogin());
+
         usersRepository.save(user);
     }
 }

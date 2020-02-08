@@ -36,7 +36,8 @@ public class ProfileController {
             return  "redirect:/login";
         }
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        UserDto userDto = from(userDetails.getUser());
+        User user = usersRepository.findOne(userDetails.getUser().getId());
+        UserDto userDto = from(user);
         modelMap.addAttribute("user", userDto);
         return "profiles/profile";
     }
@@ -57,7 +58,6 @@ public class ProfileController {
         Map<Role, Boolean> rolesStates = Arrays.stream(Role.values())
                 .collect(Collectors.toMap(
                         Function.identity(),
-//                        role -> userRoles.contains(role)
                         userRoles::contains
                 ));
         modelMap.addAttribute("userRolesStates", rolesStates);
@@ -69,5 +69,11 @@ public class ProfileController {
         User user = usersRepository.findOne(id);
         profileService.updateProfile(profileForm, id);
         return "redirect:/profileSettings?id="+id;
+    }
+
+    @PostMapping(value = "/profileSimpleSettings", params = "id")
+    public String updateProfileSimple(ModelMap modelMap, @RequestParam Long id, ProfileForm profileForm) {
+        profileService.updateProfileSimple(profileForm, id);
+        return "redirect:/";
     }
 }

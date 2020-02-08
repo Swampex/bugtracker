@@ -11,7 +11,7 @@
 </head>
 
 <body>
-
+<#include 'fragments/navbar.ftl'>
 <div class="row">
     <div class="col-md-2" style="background-color: #AAAAAA">
         <#include 'fragments/menu.ftl'> <br>

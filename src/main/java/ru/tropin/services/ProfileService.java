@@ -5,4 +5,6 @@ import ru.tropin.model.User;
 
 public interface ProfileService {
     public void updateProfile(ProfileForm profileForm, Long id);
+
+    public void updateProfileSimple(ProfileForm profileForm, Long id);
 }

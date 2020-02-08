@@ -34,12 +34,4 @@ public class User {
 
     @Enumerated(value = EnumType.STRING)
     private State state;
-
-    public static User from(UserForm form) {
-        ContactUser contacts = ContactUser.builder()
-                .firstName(form.getName()).build();
-        return User.builder()
-                .contactUser(contacts)
-                .build();
-    }
 }

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-
+<#include '../fragments/navbar.ftl'>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2" style="background-color: #AAAAAA">
@@ -33,9 +33,21 @@
                     <tr> <#list users as user>
                         <td>${user.getLogin()}</td>
                         <td>${user.getState()}</td>
-                        <td>${user.getContactUser().getFirstName()}</td>
-                        <td>${user.getContactUser().getLastName()}</td>
-                        <td>${user.getContactUser().getPhoneNumber()}</td>
+                        <#if user.getContactUser().getFirstName() ??>
+                            <td>${user.getContactUser().getFirstName()}</td>
+                        <#else>
+                            <td>---</td>
+                        </#if>
+                        <#if user.getContactUser().getLastName() ??>
+                            <td>${user.getContactUser().getLastName()}</td>
+                        <#else>
+                            <td>---</td>
+                        </#if>
+                        <#if user.getContactUser().getPhoneNumber() ??>
+                            <td>${user.getContactUser().getPhoneNumber()}</td>
+                        <#else>
+                            <td>---</td>
+                        </#if>
                     </tr> </#list>
                 </tbody>
 

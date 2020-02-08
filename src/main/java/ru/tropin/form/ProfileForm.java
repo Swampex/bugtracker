@@ -1,10 +1,6 @@
 package ru.tropin.form;
 
 import lombok.Data;
-import ru.tropin.model.Role;
-import ru.tropin.model.State;
-
-import java.util.Set;
 
 @Data
 public class ProfileForm {

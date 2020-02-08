@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.tropin.form.ProfileForm;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -24,4 +25,10 @@ public class ContactUser {
     private String firstName;
     private String lastName;
     private String phoneNumber;
+
+    public ContactUser(ProfileForm form) {
+        this.firstName = form.getFirstName();
+        this.lastName = form.getLastName();
+        this.phoneNumber = form.getPhoneNumber();
+    }
 }
